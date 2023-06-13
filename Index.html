@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ping Pong</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <video id="background-video" autoplay loop muted>
+      <source src="Parallax.mp4" type="video/mp4" />
+    </video>
+
+    <canvas id="game-window" width="1500" height="700"
+      ><button id="restart-button">Restart</button></canvas
+    >
+    <div class="restart-menu">
+      <p id="restart" class="clickable-text">Restart game</p>
+      <p id="restartExit" class="clickable-text">Exit</p>
+    </div>
+    <div id="start">
+      <h1>Blazing Stars</h1>
+      
+      <p id="startItem1" class="clickable-text">Player Vs Player</p>
+      <p id="startItem2" class="clickable-text">Player Vs Computer</p>
+      <p id="startItem3" class="clickable-text">Survival Mode</p>
+      <p id="startItem4" class="clickable-text">Instructions</p>
+    </div>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
