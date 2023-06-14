@@ -97,3 +97,39 @@ h1 {
     0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
     0 0 40px #ffcc00, 0 0 70px #ffcc00, 0 0 80px #ffcc00, 0 0 100px #ffcc00;
 }
+ 
+#instructions {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: white;
+  font-weight: bolder;
+  overflow: hidden;
+}
+
+
+#instructions h2,
+#instructions h3 {
+  color: #ffcc00;
+}
+
+#exit {
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
+    0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff;
+}

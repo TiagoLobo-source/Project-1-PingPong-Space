@@ -2,6 +2,16 @@ let player1Score = 0;
 let player2Score = 0;
 let IsMenuInitial = true;
 let IsRestart = false;
+let isInstructionsExit = false;
+const exit = document.getElementById("exit");
+document.getElementById("instructions").style.display = "none";
+
+exit.addEventListener("click", function () {
+  location.reload();
+});
+if (!isInstructionsExit) {
+  document.getElementById("exit").style.display = "none";
+}
 
 const startItem1 = document.getElementById("startItem1");
 startItem1.addEventListener("click", function () {
@@ -12,16 +22,15 @@ startItem1.addEventListener("click", function () {
 const startItem4 = document.getElementById("startItem4");
 startItem4.addEventListener("click", function () {
   document.getElementById("start").style.display = "none";
-  const canvas = document.getElementById("game-window");
-  const ctx = canvas.getContext("2d");
-
-        ctx.fillStyle = "white";
-        ctx.font = "40px Arial";
-       
-        ctx.fillText(player1Score, 600, 120);
-        ctx.fillText("Player 2", 800, 50);
-      
-})
+  let isInstructionsExit = true;
+  if (isInstructionsExit) {
+    document.getElementById("exit").style.display = "block";
+    document.getElementById("instructions").style.display = "block";
+  } else if (!isInstructionsExit) {
+    document.getElementById("exit").style.display = "none";
+    document.getElementById("instructions").style.display = "none";
+  }
+});
 
 window.onload = () => {
   if (!IsMenuInitial) {
@@ -48,7 +57,7 @@ function startGame() {
     menu.classList.remove("active");
   }
 
-   hideRestartMenu();
+  hideRestartMenu();
 
   let ballX = canvas.width / 2;
   let ballY = canvas.height / 2;
@@ -333,9 +342,9 @@ function startGame() {
       player2PaddleY = 300;
       const restartMenu = document.getElementById("restart");
       restartMenu.addEventListener("click", function () {
-        startGame()
+        startGame();
       });
-        const restartExit = document.getElementById("restartExit");
+      const restartExit = document.getElementById("restartExit");
       restartExit.addEventListener("click", function () {
         location.reload();
       });
@@ -355,7 +364,6 @@ function startGame() {
         ctx.fillText("PLAYER  1 WON", 600, 390);
         clearInterval(getGameInterval);
       } else {
-        
         ctx.clearRect(550, 0, 400, 200);
         ctx.fillStyle = "white";
         ctx.fillText("Player 1", 550, 50);
