@@ -59,6 +59,7 @@ function startGame() {
 
   hideRestartMenu();
 
+  //Starting position of the balls
   let ballX = canvas.width / 2;
   let ballY = canvas.height / 2;
   let ball2X = canvas.width / 2;

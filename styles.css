@@ -40,8 +40,8 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-  0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
-  0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff;
+    0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
+    0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff;
 }
 
 .restart-menu p {
@@ -73,8 +73,9 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
     0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
     0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff;
-}
 
+  cursor: default;
+}
 
 #start p {
   margin-bottom: 20px;
@@ -92,12 +93,14 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 8px;
-  
+
+  cursor: default;
+
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
     0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
     0 0 40px #ffcc00, 0 0 70px #ffcc00, 0 0 80px #ffcc00, 0 0 100px #ffcc00;
 }
- 
+
 #instructions {
   visibility: visible;
   position: absolute;
@@ -120,16 +123,41 @@ h1 {
   overflow: hidden;
 }
 
-
 #instructions h2,
 #instructions h3 {
   color: #ffcc00;
 }
 
 #exit {
+  margin-top: 30px;
   color: white;
   font-weight: bolder;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
     0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8),
     0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff;
+}
+#startItem1,
+#startItem2,
+#startItem3,
+#startItem4 {
+  cursor: pointer;
+}
+
+.box-transparent {
+  position: fixed;
+  height: 100vh;
+  background-color: rgba(100, 100, 100, 0.6);
+  padding: 20px;
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  max-height: 480px;
+  vertical-align: middle;
+}
+
+.text-instructions {
+  font-size: medium;
+  text-transform: lowercase;
+  font-weight: lighter;
 }
