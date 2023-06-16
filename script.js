@@ -65,18 +65,27 @@ function startGame() {
   let ball2X = canvas.width / 2;
   let ball2Y = canvas.height / 2;
 
+  let fixedSpeed = 4;
+
+  //Random directions
+
+  //Generate random number within our angle range that is 35 and 45
   function randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.random() * (max - min) + min;
   }
-  const fixedSpeed = randomInteger(8, 9);
 
-  // Random directions
-  //<=> tan of the angle (direcc) number between 0 and 1
-  const randomDirectionX = Math.random();
-  const randomDirectionY = Math.random();
-  const randomDirection2X = Math.random();
-  const randomDirection2Y = Math.random();
+  //Random angle for each ball generated
+  let angle1 = (Math.PI / 180) * randomInteger(0, 45);
+  let angle2 = (Math.PI / 180) * randomInteger(0, 45);
 
+  //Calculate directions using unitary values
+  // hypotenuse direction= 1
+  let randomDirectionX = 1 * Math.cos(angle1);
+  let randomDirectionY = 1 * Math.sin(angle1);
+  let randomDirection2X = 1 * Math.cos(angle2);
+  let randomDirection2Y = 1 * Math.sin(angle2);
+
+  //Calculate speeds
   let ballSpeedX = fixedSpeed * randomDirectionX;
   let ballSpeedY = fixedSpeed * randomDirectionY;
   let ballSpeed2X = fixedSpeed * randomDirection2X;
@@ -86,29 +95,34 @@ function startGame() {
   let playerPaddleY = 300;
   let player2PaddleY = 300;
 
-  // Players initial score
+  //Players initial score
 
   //Reset game after someone scores
+
   const resetGame = () => {
-    // Reset the ball positions
+    //Reset the ball positions
     ballX = canvas.width / 2;
     ballY = canvas.height / 2;
     ball2X = canvas.width / 2;
     ball2Y = canvas.height / 2;
 
-    //<=> tan of the angle (direcc) number between 0 and 1
-    const randomDirectionX = Math.random();
-    const randomDirectionY = Math.random();
-    const randomDirection2X = Math.random();
-    const randomDirection2Y = Math.random();
+    //Random angle for each ball generated
+    angle1 = (Math.PI / 180) * randomInteger(0, 45);
+    angle2 = (Math.PI / 180) * randomInteger(0, 45);
 
-    // Reset speed of the balls
+    // Calculate directions
+    randomDirectionX = Math.cos(angle1);
+    randomDirectionY = 1 * Math.sin(angle1);
+    randomDirection2X = Math.cos(angle2);
+    randomDirection2Y = 1 * Math.sin(angle2);
+
+    // Calculate speeds
     ballSpeedX = fixedSpeed * randomDirectionX;
     ballSpeedY = fixedSpeed * randomDirectionY;
     ballSpeed2X = fixedSpeed * randomDirection2X;
     ballSpeed2Y = fixedSpeed * randomDirection2Y;
 
-    // Reset the paddle positions
+    //Reset the paddle positions
     playerPaddleY = 300;
     player2PaddleY = 300;
   };
@@ -129,15 +143,15 @@ function startGame() {
   const updateGame = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // player 1
+    //player 1
     ctx.fillStyle = colorsPaddles[colorIndex];
     ctx.fillRect(20, playerPaddleY, 10, 100);
 
-    // player 2
+    //player 2
     ctx.fillStyle = colorsPaddles[colorIndex];
     ctx.fillRect(canvas.width - 30, player2PaddleY, 10, 100);
 
-    // Update the position of the ball
+    //Update the position of the ball
     ballX += ballSpeedX;
     ballY += ballSpeedY;
     ball2X -= ballSpeed2X;
@@ -179,16 +193,14 @@ function startGame() {
       ballSpeed2Y = -ballSpeed2Y;
     }
 
-    // Check for collision with paddles (for each player and each ball - 4 case scenarios)
+    //Check for collision with paddles (for each player and each ball - 4 case scenarios)
 
     if (
-      // if ball is to the right of player 1 paddle
+      //if ball 1 is between player 1 paddle left side and right side
       ballX + radius[radiusIndex] >= 10 &&
-      // if ball is to the left of player 1 paddle
-      ballX - radius[radiusIndex] <= 30 &&
-      // if ball is below the top edge of player 1 paddle
+      ballX - radius[radiusIndex] <= 20 &&
+      //if ball 1 is between player 1 paddle height
       ballY + radius[radiusIndex] >= playerPaddleY &&
-      // if ball is above the bottom edge of player 1 paddle
       ballY - radius[radiusIndex] <= playerPaddleY + 100
     ) {
       if (randomDirectionX > 0.8 && randomDirectionY < 0.2) {
@@ -199,13 +211,10 @@ function startGame() {
     }
 
     if (
-      // Check if ball is to the right of player 2 paddle
+      //if ball 1 is between player 2 paddle left side and right side
       ballX + radius[radiusIndex] >= canvas.width - 30 &&
-      // Check if ball is to the left of player 2 padle
-      ballX - radius[radiusIndex] <= canvas.width - 20 &&
-      // Check if ball is below the top edge of player 2 paddle
+      //if ball 1 is between player 2 paddle height
       ballY + radius[radiusIndex] >= player2PaddleY &&
-      // Check if ball is above the bottom edge of player 2 paddle
       ballY - radius[radiusIndex] <= player2PaddleY + 100
     ) {
       if (randomDirectionX > 0.8 && randomDirectionY < 0.2) {
@@ -216,13 +225,11 @@ function startGame() {
     }
 
     if (
-      // Check if ball 2 is to the right of player 1 paddle
+      //if ball 2 is between player 1 paddle left side and right side
       ball2X + radius[radiusIndex] >= 10 &&
-      // Check if ball 2 is to the lft of player 1 paddle
-      ball2X - radius[radiusIndex] <= 30 &&
-      // Check if ball 2 is below the top edge of player 1 paddle
+      ball2X - radius[radiusIndex] <= 20 &&
+      //if ball 2 is between player 1 paddle height
       ball2Y + radius[radiusIndex] >= playerPaddleY &&
-      // Check if ball 2 is abve the bottom edge of player 1 paddle
       ball2Y - radius[radiusIndex] <= playerPaddleY + 100
     ) {
       if (randomDirection2X > 0.8 && randomDirection2Y < 0.2) {
@@ -233,13 +240,10 @@ function startGame() {
     }
 
     if (
-      // Check if ball 2 is to the right of player 2 paddle
+      //if ball 2 is between player 2 paddle left side and right side
       ball2X + radius[radiusIndex] >= canvas.width - 30 &&
-      // Check if ball 2 is to the left of player 2 paddle
-      ball2X - radius[radiusIndex] <= canvas.width - 20 &&
-      // Check if ball 2 is below the top edge of player 2 paddle
+      //if ball 2 is between player 2 paddle height
       ball2Y + radius[radiusIndex] >= player2PaddleY &&
-      // Check if ball 2 is above the bottom edge of player 2 paddle
       ball2Y - radius[radiusIndex] <= player2PaddleY + 100
     ) {
       if (randomDirection2X > 0.8 && randomDirection2Y < 0.2) {
@@ -395,6 +399,7 @@ function startGame() {
     }
   });
 
+ 
   // Functions to move the paddles
   function movePlayer1PaddleUp() {
     if (playerPaddleY > 0) {
