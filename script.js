@@ -3,7 +3,7 @@ let player2Score = 0;
 let IsMenuInitial = true;
 let IsRestart = false;
 let isInstructionsExit = false;
-const audio = new Audio("../Blazing stars.mp3");
+const audio = new Audio("https://tiagolobo-source.github.io/Project-1-PingPong-Space/Blazing%20stars.mp3");
 const exit = document.getElementById("exit");
 document.getElementById("instructions").style.display = "none";
 
