@@ -11,6 +11,7 @@ exit.addEventListener("click", function () {
   location.reload();
 });
 
+
 if (!isInstructionsExit) {
   document.getElementById("exit").style.display = "none";
 }
