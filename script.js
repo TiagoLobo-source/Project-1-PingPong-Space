@@ -3,6 +3,7 @@ let player2Score = 0;
 let IsMenuInitial = true;
 let IsRestart = false;
 let isInstructionsExit = false;
+const audio = new Audio("blazing stars.mp3");
 const exit = document.getElementById("exit");
 document.getElementById("instructions").style.display = "none";
 
@@ -45,7 +46,6 @@ function startGame() {
   const canvas = document.getElementById("game-window");
   const ctx = canvas.getContext("2d");
 
-  let audio = new Audio("blazing stars.mp3");
   audio.play();
   audio.loop = true;
 
@@ -336,6 +336,7 @@ function startGame() {
       player2PaddleY = 300;
       const restartMenu = document.getElementById("restart");
       restartMenu.addEventListener("click", function () {
+        audio.pause();
         startGame();
       });
       const restartExit = document.getElementById("restartExit");
