@@ -9,6 +9,7 @@ document.getElementById("instructions").style.display = "none";
 exit.addEventListener("click", function () {
   location.reload();
 });
+
 if (!isInstructionsExit) {
   document.getElementById("exit").style.display = "none";
 }
@@ -44,6 +45,10 @@ function startGame() {
   const canvas = document.getElementById("game-window");
   const ctx = canvas.getContext("2d");
 
+  let audio = new Audio("blazing stars.mp3");
+  audio.play();
+  audio.loop = true;
+
   //Initially hide Game-over menu
   const menu = document.querySelector(".restart-menu");
 
@@ -65,11 +70,11 @@ function startGame() {
   let ball2X = canvas.width / 2;
   let ball2Y = canvas.height / 2;
 
-  let fixedSpeed = 4;
+  let fixedSpeed = 6;
 
   //Random directions
 
-  //Generate random number within our angle range that is 35 and 45
+  //Generate random number within our angle range that is 0 and 45
   function randomInteger(min, max) {
     return Math.random() * (max - min) + min;
   }
@@ -203,25 +208,17 @@ function startGame() {
       ballY + radius[radiusIndex] >= playerPaddleY &&
       ballY - radius[radiusIndex] <= playerPaddleY + 100
     ) {
-      if (randomDirectionX > 0.8 && randomDirectionY < 0.2) {
-        ballSpeedY = 0.5 * fixedSpeed;
-      } else {
-        ballSpeedX = -ballSpeedX;
-      }
+      ballSpeedX = -ballSpeedX;
     }
 
     if (
       //if ball 1 is between player 2 paddle left side and right side
-      ballX + radius[radiusIndex] >= canvas.width - 30 &&
+      ballX + radius[radiusIndex] >= canvas.width - 40 &&
       //if ball 1 is between player 2 paddle height
       ballY + radius[radiusIndex] >= player2PaddleY &&
       ballY - radius[radiusIndex] <= player2PaddleY + 100
     ) {
-      if (randomDirectionX > 0.8 && randomDirectionY < 0.2) {
-        ballSpeedX = 0.5 * fixedSpeed;
-      } else {
-        ballSpeedX = -ballSpeedX;
-      }
+      ballSpeedX = -ballSpeedX;
     }
 
     if (
@@ -232,25 +229,17 @@ function startGame() {
       ball2Y + radius[radiusIndex] >= playerPaddleY &&
       ball2Y - radius[radiusIndex] <= playerPaddleY + 100
     ) {
-      if (randomDirection2X > 0.8 && randomDirection2Y < 0.2) {
-        ballSpeed2Y = 0.5 * fixedSpeed;
-      } else {
-        ballSpeed2X = -ballSpeed2X;
-      }
+      ballSpeed2X = -ballSpeed2X;
     }
 
     if (
       //if ball 2 is between player 2 paddle left side and right side
-      ball2X + radius[radiusIndex] >= canvas.width - 30 &&
+      ball2X + radius[radiusIndex] >= canvas.width - 40 &&
       //if ball 2 is between player 2 paddle height
       ball2Y + radius[radiusIndex] >= player2PaddleY &&
       ball2Y - radius[radiusIndex] <= player2PaddleY + 100
     ) {
-      if (randomDirection2X > 0.8 && randomDirection2Y < 0.2) {
-        ballSpeed2X = 0.5 * fixedSpeed;
-      } else {
-        ballSpeed2X = -ballSpeed2X;
-      }
+      ballSpeed2X = -ballSpeed2X;
     }
 
     //Score information
@@ -399,7 +388,6 @@ function startGame() {
     }
   });
 
- 
   // Functions to move the paddles
   function movePlayer1PaddleUp() {
     if (playerPaddleY > 0) {
